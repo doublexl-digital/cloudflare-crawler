@@ -1,0 +1,44 @@
+name = "cloudflare-crawler"
+main = "./dist/index.js"
+compatibility_date = "2024-01-01"
+
+# You must replace the values below with your own Cloudflare account details.
+# See https://developers.cloudflare.com/workers/wrangler/configuration for details.
+
+[env]
+account_id = "<your-account-id>"
+route = ""
+zone_id = ""
+
+# Durable Object bindings
+[durable_objects]
+bindings = [
+  { name = "CRAWL_CONTROLLER", class_name = "CrawlController" }
+]
+
+# R2 bucket binding
+[r2_buckets]
+bindings = [
+  { name = "CRAWL_BUCKET", bucket_name = "your-crawl-bucket" }
+]
+
+# D1 database binding
+[d1_databases]
+bindings = [
+  { name = "CRAWL_DB", database_name = "your-crawl-db" }
+]
+
+# Optional: KV namespace for visited hints (if you decide to use KV in addition to Durable Objects)
+[kv_namespaces]
+bindings = [
+  { binding = "VISITED_KV", id = "" }
+]
+
+[triggers]
+crons = ["* * * * *"] # run every minute
+
+[build]
+command = "npm run build"
+
+[build.upload]
+format = "modules"
