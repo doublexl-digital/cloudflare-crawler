@@ -27,7 +27,8 @@ database_name = "c7e4c2ae-4c3b-4a21-b1fc-890328c0b7a2"
 
 # Optional: KV namespace for visited hints (if you decide to use KV in addition to Durable Objects)
 [kv_namespaces]
-"VISITED_KV", id = "95b888fd95ea47caa3d50107817562fe"
+name = "VISITED_KV"
+id = "95b888fd95ea47caa3d50107817562fe"
 
 
 [triggers]
