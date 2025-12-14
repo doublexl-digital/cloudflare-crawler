@@ -1,0 +1,29 @@
+# Cloudflare Crawler - Python Dependencies
+#
+# Core crawling
+scrapy>=2.11.0
+requests>=2.31.0
+
+# HTML parsing
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# JavaScript rendering (optional - uncomment if needed)
+# scrapy-playwright>=0.0.33
+# playwright>=1.40.0
+
+# Async support
+aiohttp>=3.9.0
+asyncio>=3.4.3
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+
+# Logging and monitoring
+structlog>=23.2.0
+
+# Development (optional)
+# pytest>=7.4.0
+# black>=23.11.0
+# mypy>=1.7.0
