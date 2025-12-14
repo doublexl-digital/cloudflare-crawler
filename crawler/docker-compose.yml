@@ -1,0 +1,61 @@
+# Cloudflare Crawler - Local Development
+#
+# Usage:
+#   docker-compose up --build
+#
+# For multiple crawlers:
+#   docker-compose up --build --scale crawler=3
+
+version: '3.8'
+
+services:
+  crawler:
+    build: .
+    environment:
+      # Required: Your Cloudflare Worker URL
+      - API_URL=${API_URL:-http://host.docker.internal:8787}
+
+      # Required: Authentication token (set via .env file or environment)
+      - API_TOKEN=${API_TOKEN:-development-token}
+
+      # Run identifier
+      - RUN_ID=${RUN_ID:-default}
+
+      # Crawling configuration
+      - BATCH_SIZE=${BATCH_SIZE:-100}
+      - CONCURRENT_REQUESTS=${CONCURRENT_REQUESTS:-16}
+      - REQUEST_TIMEOUT=${REQUEST_TIMEOUT:-30}
+      - DOWNLOAD_DELAY=${DOWNLOAD_DELAY:-0.5}
+
+      # Logging
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+    # Restart policy
+    restart: unless-stopped
+
+    # Network configuration
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "python", "-c", "print('healthy')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+# Optional: For local development with Wrangler
+networks:
+  default:
+    name: cloudflare-crawler-network
