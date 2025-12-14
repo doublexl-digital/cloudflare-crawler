@@ -12,27 +12,23 @@ zone_id = "2da68b18129393872fd5dda5476cf115"
 
 # Durable Object bindings
 [durable_objects]
-bindings = [
-  { name = "CRAWL_CONTROLLER", class_name = "CrawlController" }
-]
+name = "CRAWL_CONTROLLER"
+class_name = "CrawlController"
 
 # R2 bucket binding
 [r2_buckets]
-bindings = [
-  { name = "CRAWL_BUCKET", bucket_name = "doublexl-storage" }
-]
+name = "CRAWL_BUCKET"
+bucket_name = "doublexl-storage"
 
 # D1 database binding
 [d1_databases]
-bindings = [
-  { name = "CRAWL_DB", database_name = "c7e4c2ae-4c3b-4a21-b1fc-890328c0b7a2" }
-]
+name = "CRAWL_DB"
+database_name = "c7e4c2ae-4c3b-4a21-b1fc-890328c0b7a2"
 
 # Optional: KV namespace for visited hints (if you decide to use KV in addition to Durable Objects)
 [kv_namespaces]
-bindings = [
-  { binding = "VISITED_KV", id = "95b888fd95ea47caa3d50107817562fe" }
-]
+"VISITED_KV", id = "95b888fd95ea47caa3d50107817562fe"
+
 
 [triggers]
 crons = ["* * * * *"] # run every minute
