@@ -1,5 +1,5 @@
 {
-  "name": "cloudflare-crawler",
+  "name": "doublexl-crawler",
   "version": "0.1.0",
   "description": "Distributed crawler using Cloudflare Workers, Durable Objects and containerised crawlers",
   "main": "dist/index.js",
@@ -12,6 +12,7 @@
     "@cloudflare/kv-asset-handler": "^0.4.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^1.0.0",
     "wrangler": "^3.6.0",
     "typescript": "^5.2.0"
   }
