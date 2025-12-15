@@ -30,6 +30,7 @@ bucket_name = "doublexl-storage"
 # D1 database binding
 [[d1_databases]]
 binding = "CRAWL_DB"
+database_name = "doublexl-storage"
 database_id = "c7e4c2ae-4c3b-4a21-b1fc-890328c0b7a2"
 
 # Optional: KV namespace for storing additional metadata
@@ -40,3 +41,10 @@ id = "95b888fd95ea47caa3d50107817562fe"
 # Cron triggers
 [triggers]
 crons = ["0 0 * * *"]
+
+[observability]
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+invocation_logs = true
+persist = true
