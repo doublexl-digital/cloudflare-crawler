@@ -5,7 +5,7 @@ compatibility_date = "2024-01-01"
 account_id = "98121903f98f5f4e47fc3a30e150cd57"
 
 # Route configuration
-route = "https://doublexl-crawler.doublexl.workers.dev/*"
+route = "https://crawl.double-xl.cloud/*"
 
 # Environment Variables
 [vars]
