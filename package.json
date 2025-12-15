@@ -4,15 +4,16 @@
   "description": "Distributed crawler using Cloudflare Workers, Durable Objects and containerised crawlers",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    // "build": "tsc",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy"
   },
   "dependencies": {
-    "@cloudflare/kv-asset-handler": "^0.4.0"
+    "@cloudflare/kv-asset-handler": "^0.4.0",
+    "@cloudflare/workers-types": "^4.0.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^1.0.0",
+    "@cloudflare/workers-types": "^4.0.0",
     "wrangler": "^3.6.0",
     "typescript": "^5.2.0"
   }
