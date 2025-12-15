@@ -115,18 +115,16 @@ class CloudflareCrawler:
         payload = {
             'runId': self.config.run_id,
             'url': result.url,
-            'success': result.success,
-            'httpStatus': result.http_status,
-            'contentType': result.content_type,
-            'contentLength': result.content_length,
+            'status': result.http_status or 0,
             'contentHash': result.content_hash,
-            'title': result.title,
-            'links': result.links,
-            'errorMessage': result.error_message,
-            'fetchTimeMs': result.fetch_time_ms,
-            # Note: HTML content is typically stored directly to R2 by the Worker
-            # or sent separately to avoid payload size limits
+            'contentSize': result.content_length,
+            'discoveredUrls': result.links,
+            'error': result.error_message,
+            'fetchedAt': int(time.time() * 1000),
         }
+        # Include HTML content for R2 storage (Worker handles upload)
+        if result.html and result.success:
+            payload['content'] = result.html
         headers = {
             'Authorization': f'Bearer {self.config.api_token}',
             'Content-Type': 'application/json',
