@@ -4,7 +4,7 @@
   "description": "Distributed crawler using Cloudflare Workers, Durable Objects and containerised crawlers",
   "main": "dist/index.js",
   "scripts": {
-    // "build": "tsc",
+    "build": "tsc",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy"
   },
