@@ -5,37 +5,36 @@ compatibility_date = "2024-01-01"
 # You must replace the values below with your own Cloudflare account details.
 # See https://developers.cloudflare.com/workers/wrangler/configuration for details.
 
-[env]
+[vars]
 account_id = "98121903f98f5f4e47fc3a30e150cd57"
 route = ""
 zone_id = "2da68b18129393872fd5dda5476cf115"
 
 # Durable Object bindings
-[durable_objects]
-name = "CRAWL_CONTROLLER"
+[[durable_objects]]
+binding = "CRAWL_CONTROLLER"
 class_name = "CrawlController"
 
 # R2 bucket binding
-[r2_buckets]
-name = "CRAWL_BUCKET"
+[[r2_buckets]]
+binding = "CRAWL_BUCKET"
 bucket_name = "doublexl-storage"
 
 # D1 database binding
-[d1_databases]
-name = "CRAWL_DB"
+[[d1_databases]]
+binding = "CRAWL_DB"
 database_name = "c7e4c2ae-4c3b-4a21-b1fc-890328c0b7a2"
 
 # Optional: KV namespace for visited hints (if you decide to use KV in addition to Durable Objects)
-[kv_namespaces]
-name = "VISITED_KV"
+[[kv_namespaces]]
+binding = "VISITED_KV"
 id = "95b888fd95ea47caa3d50107817562fe"
 
-
-[triggers]
+[[triggers]]
 crons = ["* * * * *"] # run every minute
 
-[build]
-command = "npm run build"
+#[[build]]
+#command = "npm run build"
 
 [build.upload]
 format = "modules"
