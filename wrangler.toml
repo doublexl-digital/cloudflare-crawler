@@ -1,21 +1,25 @@
 name = "doublexl-crawler"
-main = "./dist/index.js"
+main = "./dist/index.js" # Adjust if "main" should point elsewhere
 compatibility_date = "2024-01-01"
 
-# You must replace the values below with your own Cloudflare account details.
-# See https://developers.cloudflare.com/workers/wrangler/configuration for details.
-
-[vars]
+# Replace the values below with your own Cloudflare account details
 account_id = "98121903f98f5f4e47fc3a30e150cd57"
-route = ""
+
+# Route to be specified or removed if unused
+route = "https://doublexl-crawler.doublexl.workers.dev/*"
+
 zone_id = "2da68b18129393872fd5dda5476cf115"
+
+# Environment Variables
+[vars]
+ENV = "production"
 
 # Durable Object bindings
 [[durable_objects]]
 binding = "CRAWL_CONTROLLER"
 class_name = "CrawlController"
 
-# R2 bucket binding
+# R2 Bucket bindings
 [[r2_buckets]]
 binding = "CRAWL_BUCKET"
 bucket_name = "doublexl-storage"
@@ -25,16 +29,14 @@ bucket_name = "doublexl-storage"
 binding = "CRAWL_DB"
 database_name = "c7e4c2ae-4c3b-4a21-b1fc-890328c0b7a2"
 
-# Optional: KV namespace for visited hints (if you decide to use KV in addition to Durable Objects)
+# Optional: KV namespace for storing additional metadata
 [[kv_namespaces]]
 binding = "VISITED_KV"
 id = "95b888fd95ea47caa3d50107817562fe"
 
 [[triggers]]
-crons = ["* * * * *"] # run every minute
-
-#[[build]]
-#command = "npm run build"
+crons = ["0 0 * * *"] # Example updated to trigger daily at midnight
 
 [build.upload]
-format = "modules"
+format = "modules" # Add 'dir' based on build output
+dir = "dist"
