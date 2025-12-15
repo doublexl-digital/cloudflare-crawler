@@ -9,8 +9,7 @@
     "deploy": "wrangler deploy"
   },
   "dependencies": {
-    "@cloudflare/kv-asset-handler": "^0.4.0",
-    "@cloudflare/workers-types": "^4.0.0"
+    "@cloudflare/kv-asset-handler": "^0.4.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.0.0",
